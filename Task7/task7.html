@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Style.css" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      function lw()
+     {
+     
+     var xhr=new XMLHttpRequest();
+     i=document.getElementById("in1").value;
+     
+     xhr.open("GET","http://192.168.43.103/cgi-bin/docker.py?x="+i,true);
+     xhr.send();
+     
+     xhr.onload=function (){
+     var output=xhr.responseText;
+     document.getElementById("d1").innerHTML=output;
+                 }
+     }
+     
+    </script>
+
+    <title>docker_js</title>
+</head>
+  
+<body>
+<div class="main"><h1 style="text-align: center; font-family: 'Times New Roman', Times, serif; color:slategrey;"><centre>Docker Web Portal</h1></centre>
+<img src="homepage-docker-logo.png" class="logo" alt="" srcset="" />
+
+<div class="allContainers">
+
+<div class="block"><h1>Launch Container</h1><br><br>
+<div id="form"><form action="http://192.168.43.103/cgi-bin/docker.py">
+<select
+class="form-select form-select-sm"
+aria-label=".form-select-sm imgname">
+<option value = "">Choose an Image</option>
+<option value = "centos:latest">Centos:latest</option>
+<option value = "centos:7">Centos:7</option>
+<option value = "ubuntu:latest">Ubuntu:latest</option>
+<option value = "ubuntu:20">Ubuntu:20</option>
+<option value = "ubuntu:18.4">Ubuntu:18.4</option>
+<option value = "fedora:latest">Fedora:latest</option>
+</select><br>
+Enter osname: <input type="text" name="name"><br><br>
+<button type="button" class="btn btn-dark" onclick="document.location='task7.html'">Launch</button></form></div>
+</div>
+
+
+<div class="block"><h1>Base Commands</h1><br><br>
+<div id="form"></div><form action="http://192.168.43.103/cgi-bin/docker.py">
+<select
+class="form-select form-select-sm"
+aria-label=".form-select-sm cmd">
+
+<option value="">Select a command</option>
+<option value = "show images">See all Images</option>
+<option value = "show containers">See all containers</option>
+<option value = "execute">Execute a command inside running container</option>
+<option value = "remove">Remove a container</option>
+<option value = "start">Start a stopped container</option>
+<option value = "attach">Attach a terminal to running container</option>
+<option value = "stop">Stop a running container</option>
+<option value = "run and delete">Launch and run a container and remove</option>
+</select><br>
+
+Enter the command: <input type="text" name="command" placeholder="To run inside a container"><br><br>
+<br>
+<button type="button" class="btn btn-dark" onclick="document.location='task7.html'">Run</button>
+</form>
+</div></div></div>
+
+<footer style="position:relative; bottom: 0; width: 100%; height: 30px; background-color:cadetblue;">
+  <p style="text-align: center; font-size: medium; color: white; font-family:Georgia, 'Times New Roman', Times, serif;"><b>| Created By &ensp; ANJALI SINGH |</b></p>
+</footer>
+</body></html>
