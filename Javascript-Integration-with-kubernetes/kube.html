@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>kubernetes</title>
+   <script>
+      function lw() {
+
+
+         var i = document.getElementById("input").value
+         var idd = "0"
+         var final = " "
+
+         //creating deployment
+         if (((i.includes("deployments")) || (i.includes("deployment")) || (i.includes("deploy"))) && ((i.includes("launch")) || (i.includes("create")) || (i.includes("run")) || (i.includes("build")))) {
+            var iname = prompt("Enter imagename: ")
+            var dname = prompt("Enter deployment name: ")
+            var idd = "1"
+            var final = idd + " " + iname + " " + dname
+         }
+
+         //creating pod
+
+         else if (((i.includes("pod")) || (i.includes("pods"))) && ((i.includes("launch")) || (i.includes("create")) || (i.includes("build")) || (i.includes("run")))) {
+
+            var iname = prompt("Enter image name: ")
+            var pname = prompt("Enter pod name: ")
+            var idd = "2"
+            var final = idd + " " + iname + " " + pname
+         }
+
+         //delete pod
+         else if (((i.includes("pod")) || (i.includes("pods"))) && ((i.includes("delete")) || (i.includes("remove")) || (i.includes("detach")) || (i.includes("destroy")))){
+
+            var pname = prompt("Enter pod name: ")
+            var idd = "3"
+            var final = idd + " " + pname
+         }
+
+         //delete deployment
+         else if (((i.includes("deployments")) || (i.includes("deployment")) || (i.includes("deploy"))) && ((i.includes("delete")) || (i.includes("remove")) || (i.includes("destroy")) || (i.includes("detach")))) {
+
+            var dname = prompt("Enter deployment name: ")
+            var idd = "4"
+            var final = idd + " " + dname
+         }
+
+         //expose deployment
+         else if (((i.includes("deployments")) || (i.includes("deploy")) || (i.includes("deployment"))) && ((i.includes("expose")) || (i.includes("display")) || (i.includes("display")))) {
+            var dname = prompt("Enter Deployment name: ")
+            var port_no = prompt("Enter port no on which you want yo export your deployment: ")
+            var etype = prompt(" 1. NodePort \n 2. ClusterIP \n 3.External \n Enter the type which you want to expose ")
+            var idd = "5"
+            var final = idd + " " + dname + " " + port_no + " " + etype
+
+         }
+         //scale deployment
+         else if (((i.includes("deployments")) || (i.includes("deploy")) || (i.includes("deployment"))) && ((i.includes("scale")) || (i.includes("replica")) || (i.includes("increase")) || (i.includes("decrease")) || (i.includes("scale up")) || (i.includes("scale down")))) {
+            var dname = prompt("Enter Deployment name: ")
+            var replica = prompt("Enter no. of replicas you need : ")
+            var idd = "6"
+            var final = idd + " " + dname + " " + replica
+
+         }
+         //list pods
+         else if (((i.includes("pods")) || (i.includes("pod"))) && ((i.includes("show")) || (i.includes("get")) || (i.includes("display")) || (i.includes("see")) || (i.includes("list")))) {
+            var idd = "7"
+            var final = idd
+
+         }
+         //list deployments
+         else if (((i.includes("deployments")) || (i.includes("deployment")) || (i.includes("deploy"))) && ((i.includes("show")) || (i.includes("see")) || (i.includes("display")) || (i.includes("get")) || (i.includes("list")))) {
+            var idd = "8"
+            var final = idd
+
+         }
+         //list svc
+         else if (((i.includes("services")) || (i.includes("services")) || (i.includes("svc"))) && ((i.includes("show")) || (i.includes("see")) || (i.includes("display")) || (i.includes("get")) || (i.includes("list")))) {
+            var idd = "9"
+            var final = idd
+
+         }
+
+         }
+         else {
+            var idd = "404"
+            var final = idd
+
+         }
+
+         var xhr = new XMLHttpRequest();
+
+         xhr.open("GET", "http://192.168.218.103/cgi-bin/kubernetes.py?x=" + final, true);
+
+         xhr.send()
+
+         xhr.onload = function () {
+            var output = xhr.responseText;
+
+            document.getElementById("d1").innerHTML = output;
+         }
+      }
+   </script>
+
+<link rel="stylesheet" href="Style.css" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+</head>
+
+<body>
+   <div class="main">
+      <h1 style="text-align: center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:teal; text-shadow: slategray; padding: 30px;">Kubernetes Portal</h1>
+      <img src="homepage-docker-logo.png" class="logo" alt="" srcset="" />
+
+
+       <div class="input-group">
+         <div class="input-group-prepend">
+           <span class="input-group-text" id="">Enter your requirement:</span>
+         </div>
+         <input type="text" class="form-control" aria-describedby="basic-addon2">
+         <div class="input-group-append">
+         <button class="btn btn-dark btn-outline-secondary" type="button" onclick="lw()">Run</button>
+         </div>
+       </div>
+
+      <pre>
+    <div class="out">Output:</div>
+    </pre>
+   </div>
+</body>
+
+</html>
